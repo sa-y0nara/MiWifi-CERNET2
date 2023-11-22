@@ -1,0 +1,2 @@
+AX6S   
+aeiou

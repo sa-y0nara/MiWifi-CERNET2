@@ -28,9 +28,9 @@ export STAGING_DIR
 
 git clone https://github.com/updateing/minieap
 cd minieap
-sed s/ENABLE_GBCONV := false/ENABLE_GBCONV := true/ config.mk
-sed s/STATIC_BUILD  := false/STATIC_BUILD  := true/ config.mk
-sed s/ENABLE_ICONV  := true/ENABLE_ICONV  := false/ config.mk
+sed s/"ENABLE_GBCONV := false"/"ENABLE_GBCONV := true"/ config.mk
+sed s/"STATIC_BUILD  := false"/"STATIC_BUILD  := true"/ config.mk
+sed s/"ENABLE_ICONV  := true"/"ENABLE_ICONV  := false"/ config.mk
 
 #根据cpu类型更改
 sed s/# CC := arm-brcm-linux-uclibcgnueabi-gcc/CC := aarch64-openwrt-linux-gcc/ config.mk

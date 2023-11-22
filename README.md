@@ -18,7 +18,7 @@ mkdir minieap && cd minieap
 #根据设备型号更改，但要保证sdk版本为18.06
 wget https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/18.06.4/targets/mediatek/mt7622/openwrt-sdk-18.06.4-mediatek-mt7622_gcc-7.3.0_musl.Linux-x86_64.tar.xz
 
-tar -xjf openwrt-sdk-18.06.4-mediatek-mt7622_gcc-7.3.0_musl.Linux-x86_64.tar.xz
+tar -xvf openwrt-sdk-18.06.4-mediatek-mt7622_gcc-7.3.0_musl.Linux-x86_64.tar.xz
 mv openwrt-sdk-18.06.4-mediatek-mt7622_gcc-7.3.0_musl.Linux-x86_64 sdk
 
 PATH=$PATH:~/minieap/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-7.3.0_musl/bin

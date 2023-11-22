@@ -8,6 +8,7 @@ release中提供了AX6S(mt7622b，aarch64)的1.2.7开发版固件可用的miniea
 1、 Minieap编译流程（以AX6S为例）：  
 
 Linux (ubuntu22.04):  
+你们可以修改仓库中的setup.sh并运行，也可以直接修改下面的代码然后运行。
 
 ```shell
 

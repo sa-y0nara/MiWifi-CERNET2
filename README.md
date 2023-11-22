@@ -112,7 +112,35 @@ make
 
 
 ## 4.路由子网下设备cernet-ipv6分配：  
-懒得写，别急。  
+以下以笔者所在学校为例。这个抽象的学校给有线连接的设备分配的是/64，至于无线连接设备，根本没分配。虽然分配的ipv6只出不进（外网不能访问），但有总好过没有。  
+按照以下要点配置：  
+- 1.在路由器后台将ipv6分配方式改为Native。  
+- 2.ssh连接路由器，将/etc/config/dhcp中的lan口和wan口设置改成以下形式：   
+```
+config dhcp 'lan'
+        option interface 'lan'
+        option start '5'
+        option limit '250'
+        option leasetime '12h'
+        option force '1'
+        option dhcpv6 'relay'
+        option ra 'relay'
+        option ndp 'relay'
+        option ra_management '1'
+        option ra_default '1'
+        option ra_preference 'high'
+        option ra_maxinterval '20'
+
+config dhcp 'wan'
+        option dhcpv6 'relay'
+        option master '1'
+        option ra 'relay'
+        option ndp 'relay'
+```
+- 3.重启路由。
+
+如果你的学校分配的是/128,可能只能用NAT66咯。当然你也可以像这样试一试，死马当做活马医。  
+
 
 
 

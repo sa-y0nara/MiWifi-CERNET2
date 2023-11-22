@@ -1,4 +1,4 @@
-# MiRouter-CERNET2  
+# MiWifi-CERNET2  
 
 
 由于学校的wifi十分垃圾，自己买了AX6S这种垃圾路由，且Openwrt第三方固件极不稳定。故作此文，让大家能在18.06的垃圾小米原版系统上使用minieap。  

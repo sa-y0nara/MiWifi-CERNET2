@@ -9,7 +9,7 @@ release中提供了AX6S(mt7622b，aarch64)的1.2.7开发版固件可用的miniea
 
 Linux (ubuntu22.04):  
 
-```
+```shell
 
 cd ~
 sudo apt install build-essential bison flex zlib1g-dev libncurses5-dev subversion quilt intltool ruby fastjar unzip gawk autogen autopoint ccache gettext libssl-dev xsltproc zip git make gcc -y
@@ -45,7 +45,7 @@ make
 2.解锁ssh 根据不同型号路由方法进行解锁，并将minieap二进制程序、config.conf以及auto_minieap.sh上传至/userdisk。  
 ssh连接路由，执行以下命令:  
 
-```
+```shell
 cd /userdisk
 chmod +x minieap
 chmod +x auto_minieap.sh
@@ -54,7 +54,7 @@ chmod +x auto_minieap.sh
 修改config.conf.  
 
 随后
-```  
+```shell
 ./auto.minieap.sh install  
 ```
 即可实现基础ipv4上网功能。  

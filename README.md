@@ -73,11 +73,11 @@ make
     ```
 
 ### 获取minieap.conf
-- 如果不懂minieap配置文件的格式，可以先使用minieap成功认证一次校园网
+- 如果不懂minieap配置文件的格式，可以先使用minieap成功认证一次校园网（以下以锐捷认证为例）
 
     ```shell
     cd /userdisk
-    ./minieap -u 用户名 -p 密码 --module rjv3
+    ./minieap -u 用户名 -p 密码 -n 网卡 --module rjv3 
     # 简单的使用实例，请自行添加想要的参数，调用./minieap -h可以查看帮助
     ```
 

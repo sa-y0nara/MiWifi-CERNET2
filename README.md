@@ -37,31 +37,81 @@ sed -i s/"ENABLE_ICONV  := true"/"ENABLE_ICONV  := false"/ config.mk
 sed -i s/"# CC := arm-brcm-linux-uclibcgnueabi-gcc"/"CC := aarch64-openwrt-linux-gcc"/ config.mk
 
 make  
-
 ```
 
 ~/minieap/minieap中即有minieap二进制程序。    
 
 
 ## 2.minieap运行实现
-解锁ssh 根据不同型号路由方法进行解锁，并将minieap二进制程序、config.conf以及auto_minieap.sh上传至/userdisk。  
-ssh连接路由，执行以下命令:  
+- 解锁ssh 根据不同型号路由方法进行解锁
+- 将`minieap`二进制程序上传至`/userdisk/`
+- ssh连接路由，执行以下命令:  
+
+    ```shell
+    cd /userdisk
+    chmod +x minieap
+    ```
+
+- 现在即可运行`minieap`认证校园网，需要懂`minieap`的使用，使用`./minieap -h`获取帮助
+
+
+## 3.开机自启
+> 思路来源于 https://github.com/lemoeo/AX6S/blob/main/auto_ssh.sh
+
+基于firewall在开机时可以自动执行脚本，在AX6S上可用，理论上也适用于其他基于Openwrt的小米路由器。
+
+### 前提
+由于脚本以硬编码方式写死了路径，所以需将`auto_minieap.sh`、`minieap`、`minieap.conf`都放在`/userdisk/`里面，会shell的话可以自行更改
+
+### 上传脚本
+- 将`auto_minieap.sh`上传至路由器的`/userdisk/`
+- 授予脚本权限
+
+    ```shell
+    cd /userdisk
+    chmod 777 auto_minieap.sh
+    ```
+
+### 获取minieap.conf
+- 如果不懂minieap配置文件的格式，可以先使用minieap成功认证一次校园网
+
+    ```shell
+    cd /userdisk
+    ./minieap -u 用户名 -p 密码 --module rjv3
+    # 简单的使用实例，请自行添加想要的参数，调用./minieap -h可以查看帮助
+    ```
+
+- 成功连接校园网后，退出程序，保持刚才的参数不变，添加`-w`参数
+- 成功后，退出程序。如果没有指定--conf-file的话，默认会在`/etc/minieap.conf`生成配置文件，直接复制到`/userdisk/`里就好了
+
+    ```shell
+    cp /etc/minieap.conf /userdisk/
+    ```
+
+### 运行
+直接运行`auto_minieap.sh`，脚本会使用`/userdisk/minieap.conf`中的配置来运行`/userdisk/minieap`程序，等价于：
 
 ```shell
-cd /userdisk
-chmod +x minieap
-chmod +x auto_minieap.sh
+/userdisk/minieap --kill --conf-file /userdisk/minieap.conf
+/userdisk/minieap --conf-file /userdisk/minieap.conf
 ```
 
-修改config.conf.  
+### 自启
 
-随后
 ```shell
-./auto.minieap.sh install  
+./auto_minieap.sh install
 ```
-即可实现基础ipv4上网功能。  
 
-## 3.路由子网下设备cernet-ipv6分配：  
+会将脚本写入/etc/config/firewall里，在开机或防火墙重载时自动执行
+
+### 取消自启
+
+```shell
+./auto_minieap.sh uninstall
+```
+
+
+## 4.路由子网下设备cernet-ipv6分配：  
 懒得写，别急。  
 
 

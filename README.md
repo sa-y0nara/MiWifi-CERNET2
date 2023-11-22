@@ -1,11 +1,11 @@
-MiRouter-CERNET2  
+# MiRouter-CERNET2  
 
 
 由于学校的wifi十分垃圾，而且自己买了AX6S这种垃圾路由，且Openwrt第三方固件极不稳定。故作此文，让大家能在18.06的垃圾小米原版系统上使用minieap。  
 
 
 release中提供了AX6S(mt7622b，aarch64)的1.2.7开发版固件可用的minieap二进制文件，大家可以拿去试一试，不行再自己编译。  
-1、 Minieap编译流程（以AX6S为例）：  
+## 1、 Minieap编译流程（以AX6S为例）：  
 
 Linux (ubuntu22.04):  
 你们可以修改仓库中的setup.sh并运行，也可以直接修改下面的代码然后运行。
@@ -43,7 +43,8 @@ make
 ~/minieap/minieap中即有minieap二进制程序。    
 
 
-2.解锁ssh 根据不同型号路由方法进行解锁，并将minieap二进制程序、config.conf以及auto_minieap.sh上传至/userdisk。  
+## 2.minieap运行实现
+解锁ssh 根据不同型号路由方法进行解锁，并将minieap二进制程序、config.conf以及auto_minieap.sh上传至/userdisk。  
 ssh连接路由，执行以下命令:  
 
 ```shell
@@ -60,7 +61,7 @@ chmod +x auto_minieap.sh
 ```
 即可实现基础ipv4上网功能。  
 
-3.子网下设备cernet-ipv6分配：  
+## 3.路由子网下设备cernet-ipv6分配：  
 懒得写，别急。  
 
 
